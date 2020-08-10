@@ -26,7 +26,7 @@ Setting up magicblocks
 Sign Up & Login
 ---------------
 - Visit `magicblocks.io <http://magicblocks.io>`_  and click signup at the top. 
-- After filling the details and subnmitting you will get the activation link via email. Click on the link to activate the account. 
+- After filling the details and submitting you will get the activation link via email. Click on the link to activate the account. 
 - Once done, you can login to your account from `magicblocks.io <http://magicblocks.io>`_ 
 
 Start the Playground
@@ -48,26 +48,37 @@ ESP32 based development boards
 
 	.. code-block:: c
 
-	#include "ESP32_MB_Core.h"
+		#include "ESP32_MB_Core.h"
 
-	unsigned long lastPing=0;
-	ESP32_MB_Core device;
+		unsigned long lastPing=0;
+		ESP32_MB_Core device;
 
-	void setup(){
-	  device.init();
-	}
+		void setup(){
+		  device.init();
+		}
 
-	void onCustomPayload(char* payload,int length){
-	  Serial.println("Payload received!");
-	  Serial.println(payload);
-	}
+		void onCustomPayload(char* payload,int length){
+		  Serial.println("Payload received!");
+		  Serial.println(payload);
+		}
 
-	void loop(){
-	  device.loop();
-	  if(millis()-lastPing>10000){
-	    lastPing=millis();
-	    device.sendPayload("HELLO",5);
-	  }
-	}
+		void loop(){
+		  device.loop();
+		  if(millis()-lastPing>10000){
+		    lastPing=millis();
+		    device.sendPayload("HELLO",5);
+		  }
+		}
+ .. code-block:: c
+
+     void setup(){
+	pinMode(18,OUTPUT);
+     }
+     void loop(){
+	digitalWrite(18,HIGH);
+	delay(1000);
+	digitalWrite(18,LOW);
+	delay(1000);
+     }
 
 - Upload to your ESP32 board
