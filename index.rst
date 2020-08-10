@@ -37,6 +37,15 @@ When you login for the first time your playground will not be running. Playgroun
 .. image:: Images/playgroundview.PNG
 .. image:: Images/playgroundview-demomode.PNG
 
+Create a new device
+-------------------
+
+Go to Device Manager and add a new generic ESP32 device
+
+.. image:: Images/createdevice.PNG
+
+Keep this browser tab open since you will need to copy the device Id and the key to setup the device in the next step.
+
 Setting up a device
 ====================
 
@@ -44,13 +53,12 @@ ESP32 based development boards
 -------------------------------
 - Install Arduino core for ESP32. Follow the instructions on `official arduino core for ESP3 <https://github.com/espressif/arduino-esp32>`_
 - Clone the `ESP32-Magicblocks library <https://github.com/Magicblocks/ESP32-Magicblocks>`_ to your Arduino libraries folder
-- Create a new project and past the code below:
+- Create a new project and past the code below in the .ino file:
 
 	.. code-block:: c
 
 		#include "ESP32_MB_Core.h"
 
-		unsigned long lastPing=0;
 		ESP32_MB_Core device;
 
 		void setup(){
@@ -64,21 +72,21 @@ ESP32 based development boards
 
 		void loop(){
 		  device.loop();
-		  if(millis()-lastPing>10000){
-		    lastPing=millis();
-		    device.sendPayload("HELLO",5);
-		  }
 		}
- .. code-block:: c
 
-     void setup(){
-	pinMode(18,OUTPUT);
-     }
-     void loop(){
-	digitalWrite(18,HIGH);
-	delay(1000);
-	digitalWrite(18,LOW);
-	delay(1000);
-     }
+This is the bare minimum sketch that should be uploaded for the device to connect to the platform
 
 - Upload to your ESP32 board
+- Reset the ESP32 board and wait for search for its configuration WiFi access point to come up. It would be named "ESP32-MB" in the default configuration
+- Connect to this WiFi access point and go to http://192.168.4.1
+
+.. image:: Image/portal-setup.png
+
+ - Fill in the device Id and the key that was generated in the previous step. You can change the **Name** to any name you like up to 32 characters. Select the WiFi SSID from the drop down and enter the WiFi password. If your WiFi is not listed here make sure the WiFi AP is active and reset the ESP32 board and retry.
+ - Save the configuration. The default admin password is 12345. You can change this from the **Admin** tab
+
+ .. image:: Image/portal-admin.png
+
+ - Once saved, the ESP32 will restart and try to connect to the WiFi and then to magicblocks. You can connect to the ESP32's configuration WiFi AP and navigate to http://192.168.4.1 to check the status of the connection. 
+ - Login to magicblocks, navigate to **Device Manager** and check if the **Connection** column comes up as a blinking green indicator. If yes, ypu can proceed to the next step
+
