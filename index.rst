@@ -80,12 +80,12 @@ This is the bare minimum sketch that should be uploaded for the device to connec
 - Reset the ESP32 board and wait for search for its configuration WiFi access point to come up. It would be named "ESP32-MB" in the default configuration
 - Connect to this WiFi access point and go to http://192.168.4.1
 
-.. image:: Image/portal-setup.PNG
+.. image:: Images/portal-setup.PNG
 
 - Fill in the device Id and the key that was generated in the previous step. You can change the **Name** to any name you like up to 32 characters. Select the WiFi SSID from the drop down and enter the WiFi password. If your WiFi is not listed here make sure the WiFi AP is active and reset the ESP32 board and retry.
 - Save the configuration. The default admin password is 12345. You can change this from the **Admin** tab
 
- .. image:: Image/portal-admin.png
+ .. image:: Images/portal-admin.png
 
 - Once saved, the ESP32 will restart and try to connect to the WiFi and then to magicblocks. You can connect to the ESP32's configuration WiFi AP and navigate to http://192.168.4.1 to check the status of the connection. 
 - Login to magicblocks, navigate to **Device Manager** and check if the **Connection** column comes up as a blinking green indicator. If yes, ypu can proceed to the next step
