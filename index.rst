@@ -16,9 +16,9 @@ magicblocks.io is a launchpad for learning and prototyping your internet of thin
 
 Everything has been designed to make the learning curve as shallow as possible for the newcomer and as flexible as possible for the advanced user. 
 
-**********************
+****************
 Getting started
-**********************
+****************
 
 Setting up magicblocks
 =======================
@@ -100,5 +100,47 @@ Go to the playground!
 - The playground is a hosted instance of a customized version of the open source Node-Red application. On the left you will find the palette where all the blocks will reside. You can drag and drop the blocks from the palette to the canvas and start rolling very quickly. Once done click the **Deploy** button on the top right corner and all your changes will be saved. In the next section we will go through some examples covering all the relevant blocks
 
 .. image:: Images/playground.PNG
+
+**********
+Examples
+**********
+
+Digital Out
+============
+
+Using inject nodes
+-------------------
+
+Controlling a pin in digital out mode is the extremely easy.
+- Open the Device Manager in your magicblocks account
+- Turn on your ESP32 board that was setup in the previous section and wait for it to connect
+- Copy the device Id of this ESP32 board
+- Open the playground
+- Drag and drop the **Digital Out** block under the category **Magicblocks**
+- Double click on the block and paste the device Id
+- Select the pin number you want to control. eg: pin 2 for inbuilt LED
+- Drag and drop 2 **inject** blocks under the **input** category and connect them to the **Digital Out** block
+- In one **inject** node set the value you want to inject to 1 and set the value to 0 in the other one
+- Click deploy
+- Now the you can toggle the pin by clicking the inject nodes.
+
+.. image:: Images/blink.png
+
+Using UI widgets
+-----------------
+
+To make things more interesting you can control the inbuilt LED via the web browser. Thanks to the `node-red-dhashboard <https://github.com/node-red/node-red-dashboard>`_ extension this is just a matter of adding a new block. 
+
+- Drag and drop a **switch** block from the **dashboard** category.
+- Create a new UI Group
+- Create a new UI tab in the group
+- Connect the switch block to the Digital Out block
+- Click deploy
+- Open the link to the web UI
+- Click on the switch and the LED should turn on and off
+
+.. image:: Images/blink-switch.png
+
+
 
 
